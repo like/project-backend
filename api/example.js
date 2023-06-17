@@ -1,5 +1,5 @@
 const yup = require('yup')
-const ErrorHTTP = require('../../lib/error-http.js')
+const ErrorHTTP = require('../lib/error-http.js')
 const reduceUA = require('reduce-user-agent')
 
 const schema = yup.object().shape({

@@ -8,7 +8,7 @@ module.exports = async function (req, res) {
   const params = JSON.parse(body.params)
 
   console.log(
-    '- Pixel:',
+    '- Pixel',
     '[' + (new Date().toLocaleString('en-GB')) + ']',
     '[' + (req.headers['cf-connecting-ip'] || req.ip), (req.headers['cf-ipcountry'] || null) + ']',
     // req.headers,

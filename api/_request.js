@@ -20,7 +20,7 @@ module.exports = async function (req, res, next) {
   }
 
   console.log(
-    '- Request:',
+    '- Request',
     '[' + (new Date().toLocaleString('en-GB')) + ']',
     '[' + remoteAddress, (req.headers['cf-ipcountry'] || null) + ']',
     // req.headers,
