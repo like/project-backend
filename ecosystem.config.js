@@ -2,7 +2,7 @@ module.exports = {
   apps: [{
     name: 'backend',
     script: './app.js',
-    instances: '4',
+    instances: '2',
     exec_mode: 'cluster',
     wait_ready: true,
     listen_timeout: 15000,
