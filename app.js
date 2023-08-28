@@ -30,8 +30,6 @@ async function main () {
 
   const server = app.listen(1337, '0.0.0.0', function () {
     console.log('Server listening')
-
-    if (process.env.PM2_HOME && process.env.wait_ready) process.send('ready')
   })
 
   server.on('close', function () {
