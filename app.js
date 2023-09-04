@@ -28,7 +28,7 @@ async function main () {
 
   app.use(ErrorHTTP.middleware)
 
-  const server = app.listen(1337, '0.0.0.0', function () {
+  const server = app.listen(1337, '127.0.0.1', function () {
     console.log('Server listening')
   })
 
