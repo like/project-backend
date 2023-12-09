@@ -30,5 +30,5 @@ module.exports = async function (req, res) {
 
   // if (err.code === 'ER_DUP_ENTRY') throw new ErrorHTTP(400, 'ALREADY_REGISTERED')
 
-  res.status(200).json({})
+  res.status(200).json({ ok: true })
 }

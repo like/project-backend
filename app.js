@@ -4,20 +4,21 @@ require('express-async-errors')
 const express = require('express')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-const graceful = require('graceful-http')
-const goodbye = require('graceful-goodbye')
 const ErrorHTTP = require('tiny-error-http')
+const Backend = require('like-backend')
 
-main()
+module.exports = Backend.launch(setup)
 
-async function main () {
+async function setup () {
   const app = express()
 
   app.set('trust proxy', true)
+  app.set('json spaces', 2)
+
   app.disable('x-powered-by')
   app.disable('etag')
 
-  app.use(cors({ maxAge: 600, credentials: true })) // { ..., origin: process.env.SERVER_URL }
+  app.use(cors({ maxAge: 600, credentials: true, origin: '*' }))
   app.use(express.json())
   app.use(express.urlencoded({ extended: true }))
   app.use(cookieParser())
@@ -28,14 +29,10 @@ async function main () {
 
   app.use(ErrorHTTP.middleware)
 
-  const server = app.listen(1337, '127.0.0.1', function () {
-    console.log('Server listening')
+  return new Backend({
+    app,
+    host: '127.0.0.1',
+    port: 1337,
+    logs: true
   })
-
-  server.on('close', function () {
-    console.log('Server closed')
-  })
-
-  const close = graceful(server)
-  goodbye(() => close())
 }
