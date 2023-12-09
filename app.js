@@ -29,7 +29,5 @@ async function main () {
 
   app.use(ErrorHTTP.middleware)
 
-  const server = app.listen(Backend.testing ? 0 : 1337, '127.0.0.1')
-
-  return new Backend({ server })
+  return app.listen(Backend.testing ? 0 : 1337, '127.0.0.1')
 }
