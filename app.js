@@ -7,9 +7,9 @@ const cookieParser = require('cookie-parser')
 const ErrorHTTP = require('tiny-error-http')
 const Backend = require('like-backend')
 
-module.exports = Backend.launch(setup)
+module.exports = Backend.launch(main)
 
-async function setup () {
+async function main () {
   const app = express()
 
   app.set('trust proxy', true)
@@ -29,10 +29,7 @@ async function setup () {
 
   app.use(ErrorHTTP.middleware)
 
-  return new Backend({
-    app,
-    host: '127.0.0.1',
-    port: 1337,
-    logs: true
-  })
+  const server = app.listen(Backend.testing ? 0 : 1337, '127.0.0.1')
+
+  return new Backend({ server })
 }
