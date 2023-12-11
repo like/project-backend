@@ -6,9 +6,8 @@ module.exports = {
 
 function request (backend, endpoint, opts = {}) {
   return fetch('http://127.0.0.1:' + backend.port + endpoint, {
-    method: opts.method || 'GET',
+    ...opts,
     requestType: opts.requestType || 'json',
-    responseType: opts.responseType || 'json',
-    body: opts.body
+    responseType: opts.responseType || 'json'
   })
 }
