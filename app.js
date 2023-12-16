@@ -4,6 +4,7 @@ require('express-async-errors')
 const express = require('express')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
+const logHTTP = require('tiny-log-http')
 const ErrorHTTP = require('tiny-error-http')
 const Backend = require('like-backend')
 
@@ -22,8 +23,7 @@ async function main () {
   app.use(express.json())
   app.use(express.urlencoded({ extended: true }))
   app.use(cookieParser())
-
-  app.use(require('./api/_request.js'))
+  app.use(logHTTP())
 
   app.post('/api/example', require('./api/example.js'))
 
