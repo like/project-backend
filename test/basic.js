@@ -4,7 +4,7 @@ const launch = require('../app.js')
 test('basic', async function (t) {
   const request = await launch(t)
 
-  const response = await request('/api/example', {
+  const response = await request('/v1/example', {
     method: 'POST',
     body: {
       email: 'test@example.com',

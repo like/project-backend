@@ -25,8 +25,11 @@ async function main () {
   app.use(cookieParser())
   app.use(logHTTP())
 
-  app.post('/api/example', require('./api/example.js'))
+  const api = express.Router()
 
+  api.post('/example', require('./api/example.js'))
+
+  app.use('/v1', api)
   app.use(ErrorHTTP.middleware)
 
   return app.listen(Backend.testing ? 0 : 1337, '127.0.0.1')
