@@ -1,36 +1,34 @@
 {
-  "name": "http-server-template",
+  "name": "{{name}}",
   "version": "0.0.0",
-  "private": true,
-  "description": "HTTP backend server template",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "standard && brittle test/*.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/like/http-server-template.git"
+    "url": "https://github.com/like/{{name}}.git"
   },
-  "author": "Lucas Barrena (LuKks)",
+  "author": "1337",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/like/http-server-template/issues"
+    "url": "https://github.com/like/{{name}}/issues"
   },
-  "homepage": "https://github.com/like/http-server-template#readme",
+  "homepage": "https://github.com/like/{{name}}#readme",
+  "devDependencies": {
+    "brittle": "^3.3.2",
+    "standard": "^17.1.0"
+  },
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "dotenv": "^16.3.0",
-    "express": "^4.18.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
     "express-async-errors": "^3.1.1",
-    "like-backend": "^2.0.0",
+    "like-backend": "^2.0.1",
     "tiny-error-http": "^1.0.0",
     "tiny-log-http": "^1.0.0",
-    "yup": "^1.2.0"
-  },
-  "devDependencies": {
-    "brittle": "^3.3.2",
-    "like-fetch": "^1.1.0",
-    "standard": "^17.1.0"
+    "yup": "^1.4.0"
   }
 }

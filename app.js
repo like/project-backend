@@ -8,6 +8,9 @@ const logHTTP = require('tiny-log-http')
 const ErrorHTTP = require('tiny-error-http')
 const Backend = require('like-backend')
 
+const PORT = process.env.PORT || 1337
+const HOST = process.env.HOST || '127.0.0.1'
+
 module.exports = Backend.launch(main)
 
 async function main () {
@@ -20,10 +23,11 @@ async function main () {
   app.disable('etag')
 
   app.use(cors({ maxAge: 600, credentials: true, origin: '*' }))
+  app.use(express.text())
   app.use(express.json())
   app.use(express.urlencoded({ extended: true }))
   app.use(cookieParser())
-  app.use(logHTTP())
+  app.use(logHTTP({ userAgent: !Backend.testing }))
 
   const api = express.Router()
 
@@ -32,5 +36,10 @@ async function main () {
   app.use('/v1', api)
   app.use(ErrorHTTP.middleware)
 
-  return app.listen(Backend.testing ? 0 : 1337, '127.0.0.1')
+  return new Backend({
+    server: app.listen(Backend.testing ? 0 : PORT, HOST),
+    goodbye: async function () {
+      // Close resources here...
+    }
+  })
 }

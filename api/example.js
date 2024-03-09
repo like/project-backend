@@ -1,6 +1,5 @@
 const yup = require('yup')
 const ErrorHTTP = require('tiny-error-http')
-const reduceUA = require('reduce-user-agent')
 
 const schema = yup.object().shape({
   email: yup.string().default('').transform(v => v.replace(/\s/g, '').toLowerCase()).min(1).max(255).test(v => v.match(/^(.+)@(.+)\.(.+)$/i)),
@@ -19,16 +18,12 @@ module.exports = async function (req, res) {
 
   const body = await schema.validate(req.body)
 
-  console.log({
-    email: body.email,
-    password: body.password,
-    country: (req.headers['cf-ipcountry'] || ''),
-    ip: (req.headers['cf-connecting-ip'] || req.ip),
-    userAgent: reduceUA(req.headers['user-agent'] || ''),
-    created: Date.now()
-  })
-
-  // if (err.code === 'ER_DUP_ENTRY') throw new ErrorHTTP(400, 'ALREADY_REGISTERED')
+  try {
+    // For example, register an user
+    console.log(body)
+  } catch (err) {
+    if (err.code === 'ER_DUP_ENTRY') throw new ErrorHTTP(409, 'ALREADY_REGISTERED')
+  }
 
   res.status(200).json({ ok: true })
 }
