@@ -3,8 +3,8 @@ const ErrorHTTP = require('tiny-error-http')
 
 const schema = yup.object().shape({
   email: yup.string().default('').transform(v => v.replace(/\s/g, '').toLowerCase()).min(1).max(255).test(v => v.match(/^(.+)@(.+)\.(.+)$/i)),
-  password: yup.string().default('').min(1).max(255),
-  repassword: yup.string().default('').oneOf([yup.ref('password')])
+  password: yup.string().default('').min(1).max(255)
+  // repassword: yup.string().default('').oneOf([yup.ref('password')])
 })
 
 /* const anotherSchema = yup.object().shape({
@@ -25,5 +25,5 @@ module.exports = async function (req, res) {
     if (err.code === 'ER_DUP_ENTRY') throw new ErrorHTTP(409, 'ALREADY_REGISTERED')
   }
 
-  res.status(200).json({ ok: true })
+  res.status(200).json({ id: 123, key: 'abc' })
 }

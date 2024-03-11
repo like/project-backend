@@ -8,10 +8,9 @@ test('basic', async function (t) {
     method: 'POST',
     body: {
       email: 'test@example.com',
-      password: '1234',
-      repassword: '1234'
+      password: '1234'
     }
   })
 
-  t.alike(response, { ok: true })
+  t.alike(response, { id: 123, key: 'abc' })
 })
