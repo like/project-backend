@@ -19,8 +19,8 @@ GET /v1/example { email, password } => { id, key }
 Set environment variables by using the `.env` file:
 
 ```sh
-HOST = "127.0.0.1"
-PORT = 1337
+BACKEND_HOST = "127.0.0.1"
+BACKEND_PORT = 1337
 ```
 
 Run the server:
