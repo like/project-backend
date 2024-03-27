@@ -22,14 +22,10 @@
     "standard": "^17.1.0"
   },
   "dependencies": {
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.18.3",
-    "express-async-errors": "^3.1.1",
-    "like-backend": "^2.0.1",
+    "like-backend": "^2.1.0",
+    "like-express": "^1.0.2",
     "tiny-error-http": "^1.0.0",
-    "tiny-log-http": "^1.0.0",
     "yup": "^1.4.0"
   }
 }
